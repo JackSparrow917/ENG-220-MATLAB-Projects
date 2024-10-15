@@ -38,8 +38,12 @@ y_axis = st.selectbox('Select column for Y-axis', columns)
 # Choose chart type: Bar Chart or Line Chart
 chart_type = st.selectbox('Select chart type', ['Bar Chart', 'Line Chart'])
 
-# Display chart based on user selections
-if chart_type == 'Bar Chart':
-    st.bar_chart(df[[x_axis, y_axis]].set_index(x_axis))
-elif chart_type == 'Line Chart':
-    st.line_chart(df[[x_axis, y_axis]].set_index(x_axis))
+# Check if the selected x-axis column is numeric
+if df[x_axis].dtype == 'object':
+    st.warning(f"Cannot use non-numeric column '{x_axis}' for chart. Please select a numeric column.")
+else:
+    # Display chart based on user selections
+    if chart_type == 'Bar Chart':
+        st.bar_chart(df[[x_axis, y_axis]].set_index(x_axis))
+    elif chart_type == 'Line Chart':
+        st.line_chart(df[[x_axis, y_axis]].set_index(x_axis))
