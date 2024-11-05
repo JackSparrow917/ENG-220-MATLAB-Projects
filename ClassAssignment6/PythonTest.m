@@ -7,6 +7,6 @@ py_math = py.importlib.import_module('math');
 result = py_math.sqrt(25);
 disp(result);
 
-py_script = py.importlib.import_module('greet');
-greeting = py_script.greet('MATLAB');
-disp(greeting);
+my_str = 'Hello MATLAB';
+reversed_str = py.str(my_str(end:-1:1));
+disp(reversed_str);
